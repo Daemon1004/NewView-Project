@@ -20,6 +20,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/userfullname"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_margin="10dp"
@@ -31,6 +32,7 @@
                     tools:ignore="VisualLintLocaleText" />
 
                 <TextView
+                    android:id="@+id/userregdate"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -40,6 +42,7 @@
                     android:textColor="@color/textColor" />
 
                 <TextView
+                    android:id="@+id/status"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -144,6 +147,7 @@
                 android:orientation="vertical">
 
                 <Button
+                    android:id="@+id/changestatus"
                     style="@style/groupSingleButtonStyle"
                     android:text="@string/ChangeStatus" />
 
@@ -159,6 +163,7 @@
                 android:orientation="vertical">
 
                 <Button
+                    android:id="@+id/tutorial"
                     style="@style/groupSingleButtonStyle"
                     android:text="@string/Tutorial" />
 
