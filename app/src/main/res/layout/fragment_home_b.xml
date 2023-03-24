@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeFragmentV"
     android:background="?attr/colorSecondary">
 
@@ -21,6 +20,7 @@
                 android:orientation="vertical">
 
                 <Button
+                    android:id="@+id/callusereye"
                     style="@style/groupSingleButtonStyle"
                     android:text="@string/CallToUserEye"
                     android:textSize="32sp"
@@ -38,6 +38,7 @@
                 android:orientation="vertical">
 
                 <Button
+                    android:id="@+id/specialhelp"
                     style="@style/groupSingleButtonStyle"
                     android:text="@string/SpecialHelp"
                     android:textSize="24sp"
