@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsFragment"
+    android:background="?attr/colorSecondary">
+
+    <LinearLayout
+        style="@style/baseLayout"
+        android:id="@+id/base_layout"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            style="@style/groupCardViewStyle">
+
+            <LinearLayout
+                style="@style/groupLayout"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/groupLabelStyle"
+                    android:text="@string/ProfileSettings" />
+
+                <Button
+                    style="@style/groupButtonStyle"
+                    android:text="@string/PersonalData" />
+
+                <Button
+                    style="@style/groupButtonStyle"
+                    android:text="@string/PasswordSetting" />
+
+                <Button
+                    style="@style/groupButtonStyle"
+                    android:text="@string/LanguageSetting" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            style="@style/groupCardViewStyle">
+
+            <LinearLayout
+                style="@style/groupLayout"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/groupLabelStyle"
+                    android:text="@string/OtherSettings" />
+
+                <Button
+                    style="@style/groupButtonStyle"
+                    android:text="@string/SmartphoneNotifications" />
+
+                <Button
+                    style="@style/groupButtonStyle"
+                    android:text="@string/EmailNotifications" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            style="@style/groupCardViewStyle">
+
+            <LinearLayout
+                style="@style/groupLayout"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/groupLabelStyle"
+                    android:text="@string/HelpInformation" />
+
+                <Button
+                    style="@style/groupButtonStyle"
+                    android:text="@string/FAQ" />
+
+                <Button
+                    style="@style/groupButtonStyle"
+                    android:text="@string/TermsAndPrivacyPolicy" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</ScrollView>

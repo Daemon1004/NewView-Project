@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">New view</string>
+    <string name="MainPage">Home</string>
+    <string name="SettingsPage">Settings</string>
+    <string name="UserEye">Volunteer</string>
+    <string name="UserBlind">Blind user</string>
+    <string name="UsersEye">Volunteers</string>
+    <string name="UsersBlind">Blind users</string>
+    <string name="UnknownNumber" translatable="false">0</string>
+    <string name="UnknownString" translatable="false">. . .</string>
+    <string name="ProfileSettings">Profile settings</string>
+    <string name="PersonalData">Personal data</string>
+    <string name="PasswordSetting">Change password</string>
+    <string name="LanguageSetting">My languages</string>
+    <string name="OtherSettings">Other settings</string>
+    <string name="SmartphoneNotifications">Smartphone notifications</string>
+    <string name="EmailNotifications">Email notifications</string>
+    <string name="HelpInformation">Help information</string>
+    <string name="FAQ">FAQ</string>
+    <string name="TermsAndPrivacyPolicy">Terms and Privacy Policy</string>
+    <string name="PlanetEarth">Planet Earth</string>
+    <string name="ParticipantSince">Participant since </string>
+    <string name="Tutorial">Tutorial: \"How to use?\"</string>
+    <string name="CallToUserEye">Call volunteer</string>
+    <string name="SpecialHelp">Special help</string>
+    <string name="ChangeStatus">Change status</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

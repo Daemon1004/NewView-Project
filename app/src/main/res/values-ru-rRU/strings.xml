@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Новый взгляд</string>
+    <string name="MainPage">Главная</string>
+    <string name="SettingsPage">Настройки</string>
+    <string name="UserEye">Волонтёр</string>
+    <string name="UserBlind">Незрячий</string>
+    <string name="UsersEye">Волонтёры</string>
+    <string name="UsersBlind">Незрячие</string>
+    <string name="ProfileSettings">Настройки профиля</string>
+    <string name="PersonalData">Личные данные</string>
+    <string name="PasswordSetting">Изменить пароль</string>
+    <string name="LanguageSetting">Мои языки</string>
+    <string name="OtherSettings">Прочие настройки</string>
+    <string name="SmartphoneNotifications">Уведомления смартфона</string>
+    <string name="EmailNotifications">Оповещение по электронной почте</string>
+    <string name="HelpInformation">Помощь</string>
+    <string name="FAQ">Часто задаваемые вопросы</string>
+    <string name="TermsAndPrivacyPolicy">Условия и политика конфиденциальности</string>
+    <string name="PlanetEarth">Планета Земля</string>
+    <string name="ParticipantSince">Участник с </string>
+    <string name="Tutorial">Туториал: \"Как использовать?\"</string>
+    <string name="CallToUserEye">Позвонить волонтёру</string>
+    <string name="SpecialHelp">Специализированная помощь</string>
+    <string name="ChangeStatus">Изменить статус</string>
+</resources>
