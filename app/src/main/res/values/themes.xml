@@ -52,11 +52,24 @@
     <style name="groupLabelStyle" parent="TextAppearance.AppCompat">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
-        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_margin">4dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/textColor</item>
+    </style>
+
+    <style name="groupEditTextStyle" parent="@android:style/Widget.EditText">
+        <item name="android:background">@drawable/roundedbutton</item>
+        <item name="android:backgroundTint">@color/editTextBackground</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:layout_marginTop">@dimen/groupMarginInside</item>
+        <item name="android:minHeight">48dp</item>
     </style>
 
 </resources>

@@ -10,4 +10,5 @@
         <item name="android:textColor">@color/textColor</item>
         <item name="android:navigationBarColor">?attr/colorPrimaryDark</item>
     </style>
+
 </resources>
