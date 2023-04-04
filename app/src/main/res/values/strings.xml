@@ -24,6 +24,8 @@
     <string name="CallToUserEye">Call volunteer</string>
     <string name="SpecialHelp">Special help</string>
     <string name="ChangeStatus">Change status</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="FirstName">First name</string>
+    <string name="LastName">Last name</string>
+    <string name="MyName">My name</string>
+    <string name="ApplySettings">Apply settings</string>
 </resources>

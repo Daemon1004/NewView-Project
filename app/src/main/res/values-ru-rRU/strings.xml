@@ -23,4 +23,8 @@
     <string name="CallToUserEye">Позвонить волонтёру</string>
     <string name="SpecialHelp">Специализированная помощь</string>
     <string name="ChangeStatus">Изменить статус</string>
+    <string name="FirstName">Имя</string>
+    <string name="LastName">Фамилия</string>
+    <string name="MyName">Мои имя и фамилия</string>
+    <string name="ApplySettings">Применить настройки</string>
 </resources>
