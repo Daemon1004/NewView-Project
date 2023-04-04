@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-    private fun loadFragment (Fragment: Fragment) {
+    fun loadFragment (Fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, Fragment)
         transaction.commit()

@@ -23,6 +23,7 @@
                     android:text="@string/ProfileSettings" />
 
                 <Button
+                    android:id="@+id/PersonalDataSettings"
                     style="@style/groupButtonStyle"
                     android:text="@string/PersonalData" />
 
