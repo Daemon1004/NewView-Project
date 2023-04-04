@@ -1,10 +1,14 @@
 package com.example.newview
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,6 +39,23 @@ class SettingsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_settings, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.findViewById<Button>(R.id.NotificationSettings).setOnClickListener {
+            val intent = Intent()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                intent.action = Settings.ACTION_APP_NOTIFICATION_SETTINGS
+                intent.putExtra(Settings.EXTRA_APP_PACKAGE, context!!.packageName)
+            } else {
+                intent.action = "android.settings.APP_NOTIFICATION_SETTINGS"
+                intent.putExtra("app_package", context!!.packageName)
+                intent.putExtra("app_uid", context!!.applicationInfo.uid)
+            }
+            context!!.startActivity(intent)
+        }
     }
 
     companion object {

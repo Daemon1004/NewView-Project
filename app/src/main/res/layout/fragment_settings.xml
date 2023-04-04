@@ -50,6 +50,7 @@
                     android:text="@string/OtherSettings" />
 
                 <Button
+                    android:id="@+id/NotificationSettings"
                     style="@style/groupButtonStyle"
                     android:text="@string/SmartphoneNotifications" />
 
