@@ -28,4 +28,7 @@
     <string name="LastName">Last name</string>
     <string name="MyName">My name</string>
     <string name="ApplySettings">Apply settings</string>
+    <string name="CurrentPassword">Current password</string>
+    <string name="NewPassword">New password</string>
+    <string name="NewPasswordRepeat">Repeat new password</string>
 </resources>

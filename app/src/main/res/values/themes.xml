@@ -25,20 +25,20 @@
     </style>
 
     <style name="groupButtonStyle" parent="groupSingleButtonStyle">
-        <item name="android:layout_marginTop">@dimen/groupMarginInside</item>
+        <item name="android:layout_marginTop">@dimen/groupPadding</item>
     </style>
 
     <style name="groupCardViewStyle" parent="Widget.MaterialComponents.CardView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginBottom">@dimen/groupMarginInside</item>
+        <item name="android:layout_marginBottom">@dimen/groupPadding</item>
         <item name="cardCornerRadius">15sp</item>
     </style>
 
     <style name="groupLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">@dimen/groupMarginInside</item>
+        <item name="android:padding">@dimen/groupPadding</item>
         <item name="android:background">?attr/colorPrimary</item>
         <item name="android:animateLayoutChanges">true</item>
     </style>
@@ -46,7 +46,7 @@
     <style name="baseLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">@dimen/groupMarginOutside</item>
+        <item name="android:padding">@dimen/groupMargin</item>
     </style>
 
     <style name="groupLabelStyle" parent="TextAppearance.AppCompat">
@@ -68,8 +68,9 @@
         <item name="android:gravity">center</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/textColor</item>
-        <item name="android:layout_marginTop">@dimen/groupMarginInside</item>
+        <item name="android:layout_marginTop">@dimen/groupPadding</item>
         <item name="android:minHeight">48dp</item>
+        <item name="android:textColorHint">@color/editTextHint</item>
     </style>
 
 </resources>

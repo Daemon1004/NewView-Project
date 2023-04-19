@@ -28,6 +28,7 @@
                     android:text="@string/PersonalData" />
 
                 <Button
+                    android:id="@+id/PasswordSettings"
                     style="@style/groupButtonStyle"
                     android:text="@string/PasswordSetting" />
 

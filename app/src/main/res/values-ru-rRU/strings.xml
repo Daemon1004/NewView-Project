@@ -27,4 +27,7 @@
     <string name="LastName">Фамилия</string>
     <string name="MyName">Мои имя и фамилия</string>
     <string name="ApplySettings">Применить настройки</string>
+    <string name="CurrentPassword">Текущий пароль</string>
+    <string name="NewPassword">Новый пароль</string>
+    <string name="NewPasswordRepeat">Повтор нового пароля</string>
 </resources>
