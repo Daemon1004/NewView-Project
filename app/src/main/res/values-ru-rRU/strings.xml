@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Новый взгляд</string>
+    <string name="app_name">Новый Взгляд</string>
     <string name="MainPage">Главная</string>
     <string name="SettingsPage">Настройки</string>
     <string name="UserEye">Волонтёр</string>
@@ -30,4 +30,9 @@
     <string name="CurrentPassword">Текущий пароль</string>
     <string name="NewPassword">Новый пароль</string>
     <string name="NewPasswordRepeat">Повтор нового пароля</string>
+    <string name="LogInToYourAccount">Войдите в свой аккаунт</string>
+    <string name="Password">Пароль</string>
+    <string name="LogIn">Войти</string>
+    <string name="FirstTime">Впервые здесь?</string>
+    <string name="CreateNewAccount">Создать новый аккаунт</string>
 </resources>

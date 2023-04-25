@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">New view</string>
+    <string name="app_name">New View</string>
     <string name="MainPage">Home</string>
     <string name="SettingsPage">Settings</string>
     <string name="UserEye">Volunteer</string>
@@ -31,4 +31,10 @@
     <string name="CurrentPassword">Current password</string>
     <string name="NewPassword">New password</string>
     <string name="NewPasswordRepeat">Repeat new password</string>
+    <string name="LogInToYourAccount">Log in to your account</string>
+    <string name="Email" translatable="false">Email</string>
+    <string name="Password">Password</string>
+    <string name="LogIn">Log in</string>
+    <string name="FirstTime">First time?</string>
+    <string name="CreateNewAccount">Create new account</string>
 </resources>

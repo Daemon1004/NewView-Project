@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSecondary"
+    tools:context=".LoginActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/base_layout"
+            style="@style/baseLayout"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView style="@style/groupCardViewStyle">
+
+                <LinearLayout
+                    style="@style/groupLayout"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/groupLabelStyle"
+                        android:text="@string/LogInToYourAccount" />
+
+                    <EditText
+                        style="@style/groupEditTextStyle"
+                        android:hint="@string/Email"
+                        android:importantForAutofill="no"
+                        android:inputType="textEmailAddress" />
+
+                    <EditText
+                        style="@style/groupEditTextStyle"
+                        android:hint="@string/Password"
+                        android:importantForAutofill="no"
+                        android:inputType="textPassword" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                style="@style/groupCardViewStyle"
+                android:layout_marginBottom="74dp">
+
+                <LinearLayout
+                    style="@style/groupLayout"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/groupLabelStyle"
+                        android:text="@string/FirstTime" />
+
+                    <Button
+                        android:id="@+id/RegistrationButton"
+                        style="@style/groupButtonStyle"
+                        android:text="@string/CreateNewAccount" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView3"
+        style="@style/groupCardViewStyle"
+        android:layout_margin="@dimen/groupPadding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            style="@style/groupLayout"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/LoginButton"
+                style="@style/groupSingleButtonStyle"
+                android:text="@string/LogIn" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>
