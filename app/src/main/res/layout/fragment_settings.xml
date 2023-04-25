@@ -87,6 +87,22 @@
 
         </android.support.v7.widget.CardView>
 
+        <android.support.v7.widget.CardView
+            style="@style/groupCardViewStyle">
+
+            <LinearLayout
+                style="@style/groupLayout"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/LogOutButton"
+                    style="@style/groupSingleButtonStyle"
+                    android:text="@string/LogOut" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
     </LinearLayout>
 
 </ScrollView>

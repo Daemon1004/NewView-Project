@@ -35,4 +35,5 @@
     <string name="LogIn">Войти</string>
     <string name="FirstTime">Впервые здесь?</string>
     <string name="CreateNewAccount">Создать новый аккаунт</string>
+    <string name="LogOut">Выйти из аккаунта</string>
 </resources>

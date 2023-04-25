@@ -37,4 +37,5 @@
     <string name="LogIn">Log in</string>
     <string name="FirstTime">First time?</string>
     <string name="CreateNewAccount">Create new account</string>
+    <string name="LogOut">Log out</string>
 </resources>
