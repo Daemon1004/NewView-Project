@@ -11,11 +11,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NewView"
         tools:targetApi="31">
+        <service
+            android:name=".services.NetService"
+            android:enabled="true"
+            android:exported="false" />
+
         <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
