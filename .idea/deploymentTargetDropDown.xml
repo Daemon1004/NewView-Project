@@ -6,8 +6,10 @@
         <type value="QUICK_BOOT_TARGET" />
         <deviceKey>
           <Key>
+
             <type value="VIRTUAL_DEVICE_PATH" />
             <value value="C:\Users\Daemon\.android\avd\Wileyfox_Swift_2_X_API_25.avd" />
+
           </Key>
         </deviceKey>
       </Target>
