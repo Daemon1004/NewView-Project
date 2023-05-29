@@ -36,4 +36,7 @@
     <string name="FirstTime">Впервые здесь?</string>
     <string name="CreateNewAccount">Создать новый аккаунт</string>
     <string name="LogOut">Выйти из аккаунта</string>
+    <string name="GoogleLogIn">Войти через Google</string>
+    <string name="Welcome">Добро пожаловать!</string>
+    <string name="LogInText">Вам необходимо войти через аккаунт Google, чтобы использовать это приложение</string>
 </resources>

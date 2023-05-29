@@ -38,4 +38,7 @@
     <string name="FirstTime">First time?</string>
     <string name="CreateNewAccount">Create new account</string>
     <string name="LogOut">Log out</string>
+    <string name="GoogleLogIn">Log In with Google</string>
+    <string name="Welcome">Welcome!</string>
+    <string name="LogInText">You need to login with Google account in order to use this app</string>
 </resources>

@@ -20,7 +20,7 @@
             style="@style/baseLayout"
             android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView style="@style/groupCardViewStyle">
+            <!--androidx.cardview.widget.CardView style="@style/groupCardViewStyle">
 
                 <LinearLayout
                     style="@style/groupLayout"
@@ -44,9 +44,9 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView-->
 
-            <androidx.cardview.widget.CardView
+            <!--androidx.cardview.widget.CardView
                 style="@style/groupCardViewStyle"
                 android:layout_marginBottom="74dp">
 
@@ -62,6 +62,26 @@
                         android:id="@+id/RegistrationButton"
                         style="@style/groupButtonStyle"
                         android:text="@string/CreateNewAccount" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView-->
+
+            <androidx.cardview.widget.CardView
+                style="@style/groupCardViewStyle"
+                android:layout_marginBottom="74dp">
+
+                <LinearLayout
+                    style="@style/groupLayout"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/groupLabelStyle"
+                        android:text="@string/Welcome" />
+
+                    <TextView
+                        style="@style/groupTextStyle"
+                        android:text="@string/LogInText" />
 
                 </LinearLayout>
 
@@ -84,9 +104,9 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/LoginButton"
+                android:id="@+id/GoogleLoginButton"
                 style="@style/groupSingleButtonStyle"
-                android:text="@string/LogIn" />
+                android:text="@string/GoogleLogIn" />
 
         </LinearLayout>
 

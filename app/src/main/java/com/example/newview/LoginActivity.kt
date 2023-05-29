@@ -10,7 +10,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        findViewById<Button>(R.id.LoginButton).setOnClickListener {
+        findViewById<Button>(R.id.GoogleLoginButton).setOnClickListener {
 
             startActivity(Intent(this, PreActivity::class.java))
             finish()
