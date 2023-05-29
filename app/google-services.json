@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "456301438836",
+    "firebase_url": "https://newview-569d8-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "newview-569d8",
+    "storage_bucket": "newview-569d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456301438836:android:7e573ebe3fdca309cfee21",
+        "android_client_info": {
+          "package_name": "com.example.newview"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9Il7XopvakSplHnehGdhzMHsfTPrEx9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
