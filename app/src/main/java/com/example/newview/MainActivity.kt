@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         homeFragment = if (intent.getStringExtra("Mode") == "B") { HomeFragmentB() } else { HomeFragmentV() }
 
         loadFragment(homeFragment)
-        findViewById<BottomNavigationView>(R.id.nav).setOnNavigationItemSelectedListener {
+        findViewById<BottomNavigationView>(R.id.nav).setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
                     loadFragment(homeFragment)
