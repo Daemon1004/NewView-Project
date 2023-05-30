@@ -36,6 +36,13 @@ class MainActivity : AppCompatActivity() {
                 UserData()
             }
 
+            if (userData.since == null)
+            {
+                val now: Long = System.currentTimeMillis()
+                database.child("users").child(auth.uid!!).child("since").setValue(now)
+                userData.since = now
+            }
+
             navLoad()
 
         }.addOnFailureListener{

@@ -20,19 +20,13 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/userfullname"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
+                    android:id="@+id/UserFullname"
+                    style="@style/groupLabelStyle"
                     android:text="@string/UnknownString"
-                    android:textSize="24sp"
-                    android:textColor="@color/textColor"
                     tools:ignore="VisualLintLocaleText" />
 
                 <TextView
-                    android:id="@+id/userregdate"
+                    android:id="@+id/UserRegDate"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -42,7 +36,7 @@
                     android:textColor="@color/textColor" />
 
                 <TextView
-                    android:id="@+id/status"
+                    android:id="@+id/Status"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"

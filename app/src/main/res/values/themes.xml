@@ -64,7 +64,7 @@
 
     <style name="groupEditTextStyle" parent="@android:style/Widget.EditText">
         <item name="android:background">@drawable/roundedbutton</item>
-        <item name="android:backgroundTint">@color/editTextBackground</item>
+        <item name="android:backgroundTint">?attr/colorAccent</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">5dp</item>

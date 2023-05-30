@@ -3,7 +3,7 @@
 
     <color name="colorPrimary_day">#51936E</color>
     <color name="colorPrimaryDark_day">#39654C</color>
-    <color name="colorAccent_day">#6D8175</color>
+    <color name="colorAccent_day">#4E5C54</color>
     <color name="textColor">#FFFFFF</color>
     <color name="background_day">#dce3df</color>
 
@@ -12,8 +12,7 @@
     <color name="colorAccent_night">#131313</color>
     <color name="background_night">#0A0B0A</color>
 
-    <color name="editTextBackground">#555555</color>
-    <color name="editTextHint">#99BA99</color>
+    <color name="editTextHint">#BBBBBB</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
