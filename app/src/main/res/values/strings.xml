@@ -40,5 +40,6 @@
     <string name="LogOut">Log out</string>
     <string name="GoogleLogIn">Log In with Google</string>
     <string name="Welcome">Welcome!</string>
-    <string name="LogInText">You need to sign in with Google account to use this app</string>
+    <string name="LogInText">You need to log in with Google account to use this app</string>
+    <string name="IsBlind">I am a blind person</string>
 </resources>

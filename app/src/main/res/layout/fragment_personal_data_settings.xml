@@ -27,16 +27,32 @@
                     style="@style/groupEditTextStyle"
                     android:hint="@string/FirstName"
                     android:importantForAutofill="no"
-                    android:inputType="textPersonName"
-                    android:text="@string/UnknownString" />
+                    android:inputType="textPersonName" />
 
                 <EditText
                     android:id="@+id/LastName"
                     style="@style/groupEditTextStyle"
                     android:hint="@string/LastName"
                     android:importantForAutofill="no"
-                    android:inputType="textPersonName"
-                    android:text="@string/UnknownString" />
+                    android:inputType="textPersonName" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            style="@style/groupCardViewStyle">
+
+            <LinearLayout
+                style="@style/groupLayout"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/IsBlindCheckbox"
+                    style="@style/groupCheckboxStyle"
+                    android:text="@string/IsBlind" />
+
+
 
             </LinearLayout>
 

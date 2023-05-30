@@ -25,7 +25,10 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         auth = Firebase.auth
-        launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+
+        SignInIfAuth()
+
+        launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)
             try {
 
@@ -56,7 +59,6 @@ class LoginActivity : AppCompatActivity() {
         val signInClient = getClient()
         launcher.launch(signInClient.signInIntent)
     }
-
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener {
@@ -64,10 +66,7 @@ class LoginActivity : AppCompatActivity() {
 
                 Log.d("SignIn", "Signed")
 
-                /*
-                startActivity(Intent(this, PreActivity::class.java))
-                finish()
-                */
+                SignInIfAuth()
 
             } else {
 
@@ -76,4 +75,13 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun SignInIfAuth() {
+        if (auth.currentUser != null)
+        {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
 }

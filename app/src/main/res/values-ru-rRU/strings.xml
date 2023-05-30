@@ -39,4 +39,5 @@
     <string name="GoogleLogIn">Войти через Google</string>
     <string name="Welcome">Добро пожаловать!</string>
     <string name="LogInText">Вам необходимо войти через аккаунт Google, чтобы использовать это приложение</string>
+    <string name="IsBlind">Являюсь слепым человеком</string>
 </resources>

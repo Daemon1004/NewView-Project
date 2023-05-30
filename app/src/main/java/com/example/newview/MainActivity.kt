@@ -1,28 +1,68 @@
 package com.example.newview
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var homeFragment: Fragment
+    lateinit var database: DatabaseReference
+    lateinit var auth: FirebaseAuth
+
+    lateinit var userData: UserData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        homeFragment = if (intent.getStringExtra("Mode") == "B") { HomeFragmentB() } else { HomeFragmentV() }
+        database = Firebase.database.reference
+        auth = Firebase.auth
 
-        loadFragment(homeFragment)
+        if (auth.uid == null) { finish() }
+        database.child("users").child(auth.uid!!).get().addOnSuccessListener {
+
+            Log.i("firebase", "Got value ${it.value}")
+
+            userData = if (it.value != null) {
+                it.getValue<UserData>() as UserData
+            } else {
+                UserData()
+            }
+
+            navLoad()
+
+        }.addOnFailureListener{
+            Log.e("firebase", "Error getting data", it)
+            finish()
+        }
+
+    }
+    private fun navLoad()
+    {
+
         findViewById<BottomNavigationView>(R.id.nav).setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
-                    loadFragment(homeFragment)
-                    true
+                    if (userData.isblind != null) {
+                        loadFragment(
+                            if (userData.isblind == true) { HomeFragmentB() } else { HomeFragmentV() }
+                        )
+                        true
+                    } else {
+                        false
+                    }
                 }
                 R.id.settings -> {
-                    loadFragment(SettingsFragment())
+                    loadFragment(
+                        if (userData.isblind != null) { SettingsFragment() } else { PersonalDataSettingsFragment() }
+                    )
                     true
                 }
                 else -> {
@@ -30,11 +70,18 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        findViewById<BottomNavigationView>(R.id.nav).selectedItemId = if (userData.isblind != null) { R.id.home } else { R.id.settings }
 
     }
     fun loadFragment (Fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, Fragment)
         transaction.commit()
+    }
+
+    fun signOut ()
+    {
+        auth.signOut()
+        finish()
     }
 }

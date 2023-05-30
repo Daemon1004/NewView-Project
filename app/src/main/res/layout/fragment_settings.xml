@@ -27,10 +27,10 @@
                     style="@style/groupButtonStyle"
                     android:text="@string/PersonalData" />
 
-                <Button
+                <!--Button
                     android:id="@+id/PasswordSettings"
                     style="@style/groupButtonStyle"
-                    android:text="@string/PasswordSetting" />
+                    android:text="@string/PasswordSetting" /-->
 
                 <Button
                     style="@style/groupButtonStyle"
@@ -56,9 +56,9 @@
                     style="@style/groupButtonStyle"
                     android:text="@string/SmartphoneNotifications" />
 
-                <Button
+                <!--Button
                     style="@style/groupButtonStyle"
-                    android:text="@string/EmailNotifications" />
+                    android:text="@string/EmailNotifications" /-->
 
             </LinearLayout>
 

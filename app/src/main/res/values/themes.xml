@@ -85,4 +85,8 @@
         <item name="android:textColor">@color/textColor</item>
     </style>
 
+    <style name="groupCheckboxStyle" parent="groupTextStyle">
+        <item name="android:minHeight">48dp</item>
+    </style>
+
 </resources>
