@@ -1,6 +1,7 @@
 package com.example.newview
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,6 +11,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -45,6 +49,7 @@ class HomeFragmentV : Fragment() {
             resources.getString(R.string.ParticipantSince) + " " +
                     if (userData.since != null) { getDate(userData.since!!) } else { "?" }
 
+
         if (userData.status != null) {
             view.findViewById<TextView>(R.id.Status).text =
                 if (userData.status == true) {
@@ -77,6 +82,32 @@ class HomeFragmentV : Fragment() {
                 ).show()
             }
         }
+
+        view.findViewById<Button>(R.id.TutorialButton).setOnClickListener {
+            val intent = Intent(context, TutorialActivity::class.java)
+            startActivity(intent)
+        }
+
+        //users count
+        database.child("users").orderByChild("isblind").equalTo(false)
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    view.findViewById<TextView>(R.id.VCount).text = dataSnapshot.childrenCount.toString()
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("firebase", "Error (volunteers count)")
+                }
+            })
+        database.child("users").orderByChild("isblind").equalTo(true)
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    view.findViewById<TextView>(R.id.BCount).text = dataSnapshot.childrenCount.toString()
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("firebase", "Error (blind users count)")
+                }
+            })
+
 
     }
 
