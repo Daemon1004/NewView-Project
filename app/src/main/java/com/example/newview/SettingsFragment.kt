@@ -26,12 +26,6 @@ class SettingsFragment : Fragment() {
             (activity as MainActivity?)!!.loadFragment(PersonalDataSettingsFragment())
         }
 
-        /*
-        view.findViewById<Button>(R.id.PasswordSettings).setOnClickListener {
-            (activity as MainActivity?)!!.loadFragment(PasswordSettingsFragment())
-        }
-        */
-
         view.findViewById<Button>(R.id.NotificationSettings).setOnClickListener {
             val intent = Intent()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
