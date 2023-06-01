@@ -12,6 +12,7 @@
         android:id="@+id/base_layout"
         android:orientation="vertical">
 
+
         <androidx.cardview.widget.CardView
             style="@style/groupCardViewStyle">
 
@@ -27,24 +28,24 @@
 
                 <TextView
                     android:id="@+id/UserRegDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/ParticipantSince"
-                    android:textSize="20sp"
-                    android:textColor="@color/textColor" />
+                    style="@style/groupTextStyle"
+                    android:text="@string/ParticipantSince" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            style="@style/groupCardViewStyle">
+
+            <LinearLayout
+                style="@style/groupLayout"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/Status"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginTop="12dp"
-                    android:gravity="center"
-                    android:text="@string/UnknownString"
-                    android:textSize="20sp"
-                    android:textColor="@color/textColor" />
+                    style="@style/groupLabelStyle"
+                    android:text="@string/Online" />
 
             </LinearLayout>
 
@@ -141,7 +142,7 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/changestatus"
+                    android:id="@+id/ChangeStatusButton"
                     style="@style/groupSingleButtonStyle"
                     android:text="@string/ChangeStatus" />
 
@@ -157,7 +158,7 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/tutorial"
+                    android:id="@+id/TutorialButton"
                     style="@style/groupSingleButtonStyle"
                     android:text="@string/Tutorial" />
 

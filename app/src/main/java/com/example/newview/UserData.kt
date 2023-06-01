@@ -4,7 +4,8 @@ data class UserData(
     var isblind: Boolean? = null,
     var firstname: String? = null,
     var lastname: String? = null,
-    var since: Long? = null
+    var since: Long? = null,
+    var status: Boolean? = null
 )
 
 /*

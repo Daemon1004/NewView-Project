@@ -40,7 +40,15 @@ class MainActivity : AppCompatActivity() {
             {
                 val now: Long = System.currentTimeMillis()
                 database.child("users").child(auth.uid!!).child("since").setValue(now)
+                Log.i("firebase", "First start detected")
                 userData.since = now
+            }
+            if (userData.status == null)
+            {
+                Log.i("firebase", "Status is null")
+                database.child("users").child(auth.uid!!).child("status").setValue(false)
+                Log.i("firebase", "Fixed status")
+                userData.status = false
             }
 
             navLoad()
@@ -51,8 +59,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-    private fun navLoad()
-    {
+    private fun navLoad() {
 
         findViewById<BottomNavigationView>(R.id.nav).setOnItemSelectedListener {
             when (it.itemId) {
@@ -84,6 +91,13 @@ class MainActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, Fragment)
         transaction.commit()
+    }
+
+    fun reload () {
+        overridePendingTransition(0, 0)
+        finish()
+        overridePendingTransition(0, 0)
+        startActivity(intent)
     }
 
     fun signOut ()

@@ -42,4 +42,7 @@
     <string name="Welcome">Welcome!</string>
     <string name="LogInText">You need to log in with Google account to use this app</string>
     <string name="IsBlind">I am a blind person</string>
+    <string name="Online">Online</string>
+    <string name="DontDisturb">Don\'t disturb</string>
+    <string name="StatusChanged">Status changed</string>
 </resources>

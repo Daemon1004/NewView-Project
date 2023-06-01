@@ -46,14 +46,13 @@ class PersonalDataSettingsFragment : Fragment() {
             database.child("users").child(auth.uid!!).setValue(userData).addOnSuccessListener {
 
                 Log.e("firebase", "Saved user data")
-                myActivity.overridePendingTransition(0, 0)
-                myActivity.finish()
-                myActivity.overridePendingTransition(0, 0)
-                startActivity(myActivity.intent)
+                myActivity.reload()
 
             }.addOnFailureListener{
+
                 Log.e("firebase", "Error setting user data")
-                myActivity.finish()
+                myActivity.reload()
+
             }
 
         }
