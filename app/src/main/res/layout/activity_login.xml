@@ -20,53 +20,6 @@
             style="@style/baseLayout"
             android:orientation="vertical">
 
-            <!--androidx.cardview.widget.CardView style="@style/groupCardViewStyle">
-
-                <LinearLayout
-                    style="@style/groupLayout"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/groupLabelStyle"
-                        android:text="@string/LogInToYourAccount" />
-
-                    <EditText
-                        style="@style/groupEditTextStyle"
-                        android:hint="@string/Email"
-                        android:importantForAutofill="no"
-                        android:inputType="textEmailAddress" />
-
-                    <EditText
-                        style="@style/groupEditTextStyle"
-                        android:hint="@string/Password"
-                        android:importantForAutofill="no"
-                        android:inputType="textPassword" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView-->
-
-            <!--androidx.cardview.widget.CardView
-                style="@style/groupCardViewStyle"
-                android:layout_marginBottom="74dp">
-
-                <LinearLayout
-                    style="@style/groupLayout"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/groupLabelStyle"
-                        android:text="@string/FirstTime" />
-
-                    <Button
-                        android:id="@+id/RegistrationButton"
-                        style="@style/groupButtonStyle"
-                        android:text="@string/CreateNewAccount" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView-->
-
             <androidx.cardview.widget.CardView
                 style="@style/groupCardViewStyle"
                 android:layout_marginBottom="74dp">

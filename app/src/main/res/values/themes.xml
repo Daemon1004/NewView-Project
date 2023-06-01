@@ -23,8 +23,9 @@
     <style name="groupSingleButtonStyle" parent="systemButtonStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">16dp</item>
+        <item name="android:padding">10dp</item>
         <item name="android:textSize">20sp</item>
+        <item name="android:minHeight">48dp</item>
     </style>
 
     <style name="groupButtonStyle" parent="groupSingleButtonStyle">
@@ -58,7 +59,7 @@
         <item name="android:layout_margin">4dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/textColor</item>
     </style>
 
@@ -69,7 +70,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">5dp</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/textColor</item>
         <item name="android:layout_marginTop">@dimen/groupPadding</item>
         <item name="android:minHeight">48dp</item>
@@ -85,8 +86,7 @@
         <item name="android:textColor">@color/textColor</item>
     </style>
 
-    <style name="groupCheckboxStyle" parent="groupTextStyle">
-        <item name="android:minHeight">48dp</item>
+    <style name="groupCheckboxStyle" parent="groupSingleButtonStyle">
     </style>
 
 </resources>
