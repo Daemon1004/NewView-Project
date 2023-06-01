@@ -45,27 +45,37 @@ class HomeFragmentV : Fragment() {
             resources.getString(R.string.ParticipantSince) + " " +
                     if (userData.since != null) { getDate(userData.since!!) } else { "?" }
 
-        view.findViewById<TextView>(R.id.Status).text =
-            if (userData.status == true) { resources.getString(R.string.Online)  } else { resources.getString(R.string.DontDisturb)  }
-
-
-        fun updateStatusName() {
+        if (userData.status != null) {
             view.findViewById<TextView>(R.id.Status).text =
                 if (userData.status == true) {
                     resources.getString(R.string.Online)
                 } else {
                     resources.getString(R.string.DontDisturb)
                 }
-        }
 
-        updateStatusName()
 
-        view.findViewById<Button>(R.id.ChangeStatusButton).setOnClickListener {
-            userData.status = !userData.status!!
+            fun updateStatusName() {
+                view.findViewById<TextView>(R.id.Status).text =
+                    if (userData.status == true) {
+                        resources.getString(R.string.Online)
+                    } else {
+                        resources.getString(R.string.DontDisturb)
+                    }
+            }
+
             updateStatusName()
-            database.child("users").child(auth.uid!!).child("status").setValue(userData.status)
-            Log.i("firebase", "Write new status: " + userData.status)
-            Toast.makeText(myActivity.applicationContext, resources.getString(R.string.StatusChanged), Toast.LENGTH_SHORT).show()
+
+            view.findViewById<Button>(R.id.ChangeStatusButton).setOnClickListener {
+                userData.status = !userData.status!!
+                updateStatusName()
+                database.child("users").child(auth.uid!!).child("status").setValue(userData.status)
+                Log.i("firebase", "Write new status: " + userData.status)
+                Toast.makeText(
+                    myActivity.applicationContext,
+                    resources.getString(R.string.StatusChanged),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
 
     }

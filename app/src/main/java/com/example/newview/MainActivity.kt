@@ -43,12 +43,18 @@ class MainActivity : AppCompatActivity() {
                 Log.i("firebase", "First start detected")
                 userData.since = now
             }
-            if (userData.status == null)
-            {
-                Log.i("firebase", "Status is null")
-                database.child("users").child(auth.uid!!).child("status").setValue(false)
-                Log.i("firebase", "Fixed status")
-                userData.status = false
+            if (userData.isblind != null) {
+                if (userData.status == null && userData.isblind == false) {
+                    Log.i("firebase", "V. Status is null")
+                    database.child("users").child(auth.uid!!).child("status").setValue(false)
+                    Log.i("firebase", "V. Fixed status")
+                    userData.status = false
+                } else if (userData.status != null && userData.isblind == true) {
+                    Log.i("firebase", "B. Deleting status for blind user")
+                    database.child("users").child(auth.uid!!).child("status").setValue(null)
+                    Log.i("firebase", "B. Fixed status")
+                    userData.status = null
+                }
             }
 
             navLoad()
