@@ -45,7 +45,7 @@ class PersonalDataSettingsFragment : Fragment() {
 
             database.child("users").child(auth.uid!!).setValue(userData).addOnSuccessListener {
 
-                Log.e("firebase", "Saved user data")
+                Log.i("firebase", "Saved user data")
                 myActivity.reload()
 
             }.addOnFailureListener{

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary_day">#51936E</color>
-    <color name="colorPrimaryDark_day">#39654C</color>
+    <color name="colorPrimary_day">#427759</color>
+    <color name="colorPrimaryDark_day">#325942</color>
     <color name="colorAccent_day">#4E5C54</color>
     <color name="textColor">#FFFFFF</color>
     <color name="background_day">#dce3df</color>

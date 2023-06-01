@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
-        SignInIfAuth()
+        signInIfAuth()
 
         launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)
@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
                 }
 
             } catch (e: ApiException) {
-                Log.d("SignIn", "Api exception")
+                Log.e("SignIn", "Api exception")
             }
         }
 
@@ -64,19 +64,19 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
 
-                Log.d("SignIn", "Signed")
+                Log.i("SignIn", "Signed")
 
-                SignInIfAuth()
+                signInIfAuth()
 
             } else {
 
-                Log.d("SignIn", "Error")
+                Log.e("SignIn", "Error")
 
             }
         }
     }
 
-    private fun SignInIfAuth() {
+    private fun signInIfAuth() {
         if (auth.currentUser != null)
         {
             val intent = Intent(this, MainActivity::class.java)
