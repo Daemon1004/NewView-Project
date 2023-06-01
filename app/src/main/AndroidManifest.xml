@@ -11,11 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NewView"
         tools:targetApi="31">
-
+        <activity
+            android:name=".TutorialActivity"
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:screenOrientation="portrait"
             android:exported="true"
+            android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,14 +26,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PreActivity"
-            android:screenOrientation="portrait"
-            android:exported="false"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
             android:exported="false"
+            android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
     </application>
 
