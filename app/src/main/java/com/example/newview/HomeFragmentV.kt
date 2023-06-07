@@ -32,7 +32,12 @@ class HomeFragmentV : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val myActivity = (activity as MainActivity?)!!
-        val userData = myActivity.userData
+        lateinit var userData: UserData
+        try {
+            userData = myActivity.userData
+        } catch (e: UninitializedPropertyAccessException) {
+            return
+        }
         val auth = myActivity.auth
         val database = myActivity.database
 
