@@ -5,7 +5,7 @@
         <item name="colorPrimary">@color/colorPrimary_night</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark_night</item>
         <item name="colorAccent">@color/colorAccent_night</item>
-        <item name="colorSurface">@color/colorPrimary_night</item>
+        <item name="colorSurface">@color/colorAccent2_night</item>
         <!-- Customize your theme here. -->
         <item name="colorSecondary">@color/background_night</item>
     </style>

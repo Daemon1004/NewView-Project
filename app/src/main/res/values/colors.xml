@@ -3,13 +3,15 @@
 
     <color name="colorPrimary_day">#427759</color>
     <color name="colorPrimaryDark_day">#325942</color>
-    <color name="colorAccent_day">#4E5C54</color>
+    <color name="colorAccent_day">#73A588</color>
+    <color name="colorAccent2_day">#4E5C54</color>
     <color name="textColor">#FFFFFF</color>
     <color name="background_day">#dce3df</color>
 
     <color name="colorPrimary_night">#122e28</color>
     <color name="colorPrimaryDark_night">#091714</color>
-    <color name="colorAccent_night">#131313</color>
+    <color name="colorAccent_night">#676767</color>
+    <color name="colorAccent2_night">#131313</color>
     <color name="background_night">#0A0B0A</color>
 
     <color name="editTextHint">#BBBBBB</color>

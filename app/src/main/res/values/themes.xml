@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary_day</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark_day</item>
         <item name="colorAccent">@color/colorAccent_day</item>
-        <item name="colorSurface">@color/colorPrimary_day</item>
+        <item name="colorSurface">@color/colorAccent2_day</item>
         <!-- Customize your theme here. -->
         <item name="colorSecondary">@color/background_day</item>
         <item name="buttonStyle">@style/systemButtonStyle</item>
@@ -16,7 +16,7 @@
     <!-- Widget.MaterialComponents.Button -->
     <style name="systemButtonStyle" parent="@android:style/Widget.Button">
         <item name="android:background">@drawable/roundedbutton</item>
-        <item name="android:backgroundTint">?attr/colorAccent</item>
+        <item name="android:backgroundTint">?attr/colorSurface</item>
         <item name="android:textColor">@color/textColor</item>
     </style>
 
@@ -65,7 +65,7 @@
 
     <style name="groupEditTextStyle" parent="@android:style/Widget.EditText">
         <item name="android:background">@drawable/roundedbutton</item>
-        <item name="android:backgroundTint">?attr/colorAccent</item>
+        <item name="android:backgroundTint">?attr/colorSurface</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">5dp</item>
