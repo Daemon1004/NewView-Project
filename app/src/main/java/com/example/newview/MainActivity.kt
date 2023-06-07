@@ -107,8 +107,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun signOut ()
-    {
+    fun signOut () {
         auth.signOut()
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
