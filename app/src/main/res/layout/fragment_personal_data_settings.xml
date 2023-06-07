@@ -52,8 +52,6 @@
                     style="@style/groupCheckboxStyle"
                     android:text="@string/IsBlind" />
 
-
-
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

@@ -87,6 +87,7 @@
     </style>
 
     <style name="groupCheckboxStyle" parent="groupSingleButtonStyle">
+        <item name="android:buttonTint">@color/textColor</item>
     </style>
 
 </resources>
