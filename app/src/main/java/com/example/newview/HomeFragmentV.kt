@@ -55,14 +55,6 @@ class HomeFragmentV : Fragment() {
 
 
         if (userData.status != null) {
-            view.findViewById<TextView>(R.id.Status).text =
-                if (userData.status == true) {
-                    resources.getString(R.string.Online)
-                } else {
-                    resources.getString(R.string.DontDisturb)
-                }
-
-
             fun updateStatusName() {
                 view.findViewById<TextView>(R.id.Status).text =
                     if (userData.status == true) {
