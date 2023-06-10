@@ -20,7 +20,7 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/callusereye"
+                    android:id="@+id/CallVolunteerButton"
                     style="@style/groupSingleButtonStyle"
                     android:text="@string/CallToUserEye"
                     android:textSize="32sp"
@@ -38,7 +38,7 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/specialhelp"
+                    android:id="@+id/SpecialHelpButton"
                     style="@style/groupSingleButtonStyle"
                     android:text="@string/SpecialHelp"
                     android:textSize="24sp"
