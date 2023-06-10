@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 
 class HomeFragmentB : Fragment() {
     override fun onCreateView(
@@ -24,10 +25,12 @@ class HomeFragmentB : Fragment() {
         } catch (e: UninitializedPropertyAccessException) {
             return
         }
-        val auth = myActivity.auth
-        val database = myActivity.database
+
+        view.findViewById<Button>(R.id.CallVolunteerButton).setOnClickListener {
 
 
+
+        }
 
     }
 }
