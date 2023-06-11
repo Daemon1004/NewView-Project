@@ -1,12 +1,12 @@
 package com.example.newview
 
-data class UserData(
+data class UserData (
     var isblind: Boolean? = null,
     var firstname: String? = null,
     var lastname: String? = null,
     var since: Long? = null,
     var status: Boolean? = null
-)
+) : java.io.Serializable
 
 /*
 data class UserData(val isblind: Boolean? = null, val firstname: String? = null, val lastname: String? = null) {

@@ -8,7 +8,10 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
@@ -58,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            navLoad()
+            userDataLoaded()
 
         }.addOnFailureListener{
             Log.e("firebase", "Error getting data", it)
@@ -66,8 +69,8 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-    private fun navLoad() {
-
+    private fun navLoad()
+    {
         findViewById<BottomNavigationView>(R.id.nav).setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
@@ -92,6 +95,70 @@ class MainActivity : AppCompatActivity() {
             }
         }
         findViewById<BottomNavigationView>(R.id.nav).selectedItemId = if (userData.isblind != null) { R.id.home } else { R.id.settings }
+    }
+    private fun userDataLoaded() {
+
+        navLoad()
+
+        if (userData.isblind == null) { return }
+
+        if (userData.isblind == false)
+        {
+            database.child("calls").orderByChild("needHelp").equalTo(true).limitToFirst(1)
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        if (dataSnapshot.childrenCount > 0) {
+                            //Log.i("firebase", "Gets: $dataSnapshot")
+                            lateinit var data : DataSnapshot
+                            for (postSnapshot in dataSnapshot.children)
+                            {
+                                Log.i("firebase", "Call1 gets: $postSnapshot")
+                                data = postSnapshot
+                            }
+
+                            val blind = data.key
+
+                            if (blind != null) {
+                                //database.child("calls").child(blind).child("volunteer").setValue(auth.uid)
+                                //database.child("calls").child(blind).child("needHelp").setValue(null)
+                                val updates: MutableMap<String, Any> = hashMapOf(
+                                    "calls/$blind/volunteer" to (auth.uid as String),
+                                    "calls/$blind/needHelp" to false
+                                )
+                                database.updateChildren(updates)
+                            }
+
+                        }
+                    }
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.e("firebase", "Error (calls)")
+                    }
+                })
+            database.child("calls").orderByChild("volunteer").equalTo(auth.uid).limitToFirst(1)
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        if (dataSnapshot.childrenCount > 0) {
+                            //Log.i("firebase", "Gets: $dataSnapshot")
+                            lateinit var data : DataSnapshot
+                            for (postSnapshot in dataSnapshot.children)
+                            {
+                                Log.i("firebase", "Call2 gets: $postSnapshot")
+                                data = postSnapshot
+                            }
+
+                            val blind = data.key
+
+                            if (blind != null) {
+                                startCallVActivity(blind)
+                            }
+
+                        }
+                    }
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.e("firebase", "Error (calls)")
+                    }
+                })
+        }
 
     }
     fun loadFragment (Fragment: Fragment) {
@@ -112,5 +179,17 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    fun startCallBActivity() {
+        val intent = Intent(this, CallBActivity::class.java)
+        intent.putExtra("userData", userData)
+        startActivity(intent)
+    }
+    fun startCallVActivity(blind : String) {
+        val intent = Intent(this, CallVActivity::class.java)
+        intent.putExtra("userData", userData)
+        intent.putExtra("blind", blind)
+        startActivity(intent)
     }
 }

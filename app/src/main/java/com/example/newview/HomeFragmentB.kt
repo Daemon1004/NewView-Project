@@ -26,11 +26,7 @@ class HomeFragmentB : Fragment() {
             return
         }
 
-        view.findViewById<Button>(R.id.CallVolunteerButton).setOnClickListener {
-
-
-
-        }
+        view.findViewById<Button>(R.id.CallVolunteerButton).setOnClickListener { myActivity.startCallBActivity() }
 
     }
 }

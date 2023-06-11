@@ -12,8 +12,18 @@
         android:theme="@style/Theme.NewView"
         tools:targetApi="31">
         <activity
-            android:name=".TutorialActivity"
+            android:name=".CallVActivity"
             android:exported="false" />
+        <activity
+            android:name=".CallBActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".TutorialActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".LoginActivity"
             android:exported="true"

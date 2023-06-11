@@ -104,7 +104,6 @@ class HomeFragmentV : Fragment() {
                 }
             })
 
-
     }
 
     private fun getDate(timestamp: Long) :String {
