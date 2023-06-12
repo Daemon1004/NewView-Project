@@ -104,6 +104,7 @@ class MainActivity : AppCompatActivity() {
 
         if (userData.isblind == false)
         {
+
             database.child("calls").orderByChild("needHelp").equalTo(true).limitToFirst(1)
                 .addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -118,7 +119,7 @@ class MainActivity : AppCompatActivity() {
 
                             val blind = data.key
 
-                            if (blind != null) {
+                            if (blind != null && userData.status == true) {
                                 //database.child("calls").child(blind).child("volunteer").setValue(auth.uid)
                                 //database.child("calls").child(blind).child("needHelp").setValue(null)
                                 val updates: MutableMap<String, Any> = hashMapOf(
@@ -134,6 +135,7 @@ class MainActivity : AppCompatActivity() {
                         Log.e("firebase", "Error (calls)")
                     }
                 })
+
             database.child("calls").orderByChild("volunteer").equalTo(auth.uid).limitToFirst(1)
                 .addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -158,6 +160,7 @@ class MainActivity : AppCompatActivity() {
                         Log.e("firebase", "Error (calls)")
                     }
                 })
+
         }
 
     }

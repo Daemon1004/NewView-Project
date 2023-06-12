@@ -19,6 +19,11 @@ class CallBActivity : AppCompatActivity() {
 
     private lateinit var userData: UserData
 
+    private lateinit var volunteerRef : DatabaseReference
+    private lateinit var volunteerListener : ValueEventListener
+    private lateinit var callRef : DatabaseReference
+    private lateinit var callListener : ValueEventListener
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_call_b)
@@ -38,16 +43,35 @@ class CallBActivity : AppCompatActivity() {
 
         database.child("calls").child(auth.uid!!).child("needHelp").setValue(true)
 
-        lateinit var volunteerListener : ValueEventListener
-        volunteerListener = database.child("calls").child(auth.uid!!).child("volunteer")
-            .addValueEventListener(object : ValueEventListener {
+        volunteerRef = database.child("calls").child(auth.uid!!).child("volunteer")
+        volunteerListener = volunteerRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    Log.i("firebase", "Get: $dataSnapshot")
+                    Log.i("firebase", "VolunteerListener. Get: $dataSnapshot")
 
                     val volunteer = dataSnapshot.value.toString()
 
                     database.child("calls").removeEventListener(volunteerListener)
-                    if (volunteer != "null") { call(volunteer) }
+                    if (volunteer != "null") {
+                        call(volunteer)
+                    }
+
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("firebase", "Error")
+                }
+            })
+
+        callRef = database.child("calls").child(auth.uid!!)
+        callListener = callRef.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    Log.i("firebase", "CallListener. Get: $dataSnapshot")
+
+                    val data = dataSnapshot.value.toString()
+
+                    if (data == "null")
+                    {
+                        finish()
+                    }
 
                 }
                 override fun onCancelled(error: DatabaseError) {
@@ -65,14 +89,13 @@ class CallBActivity : AppCompatActivity() {
 
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onDestroy()
+    {
 
-        if (isFinishing) {
+        callRef.removeEventListener(callListener)
+        volunteerRef.removeEventListener(volunteerListener)
+        database.child("calls").child(auth.uid!!).setValue(null)
 
-            database.child("calls").child(auth.uid!!).setValue(null)
-
-        }
-
+        super.onDestroy()
     }
 }

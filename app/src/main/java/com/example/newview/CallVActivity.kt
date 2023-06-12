@@ -17,6 +17,10 @@ class CallVActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
 
     private lateinit var userData: UserData
+    private lateinit var blind : String
+
+    private lateinit var callRef : DatabaseReference
+    private lateinit var callListener : ValueEventListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +31,6 @@ class CallVActivity : AppCompatActivity() {
         database = Firebase.database.reference
         auth = Firebase.auth
 
-        lateinit var blind : String
         if (arguments != null) {
             @Suppress("DEPRECATION")
             userData = arguments.getSerializable("userData") as UserData
@@ -37,10 +40,10 @@ class CallVActivity : AppCompatActivity() {
             return
         }
 
-        database.child("calls").child(blind)
-            .addValueEventListener(object : ValueEventListener {
+        callRef = database.child("calls").child(blind)
+        callListener = callRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    Log.i("firebase", "Get: $dataSnapshot")
+                    Log.i("firebase", "CallListener. Get: $dataSnapshot")
 
                     val data = dataSnapshot.value.toString()
 
@@ -55,5 +58,12 @@ class CallVActivity : AppCompatActivity() {
                 }
             })
 
+    }
+    override fun onDestroy() {
+
+        callRef.removeEventListener(callListener)
+        database.child("calls").child(blind).setValue(null)
+
+        super.onDestroy()
     }
 }
