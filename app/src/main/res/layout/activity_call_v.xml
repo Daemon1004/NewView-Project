@@ -7,6 +7,45 @@
     android:background="?attr/colorSecondary"
     tools:context=".LoginActivity">
 
+    <FrameLayout
+        android:id="@+id/VideoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone">
 
+        <live.videosdk.rtc.android.VideoView
+            android:id="@+id/MyVideoView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/CardCallStatus"
+        style="@style/groupCardViewStyle"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_margin="@dimen/groupMargin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            style="@style/groupLayout"
+            android:background="@android:color/transparent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/CallStatus"
+                style="@style/groupTextStyle" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -48,15 +48,18 @@ class PersonalDataSettingsFragment : Fragment() {
             userData.lastname = lastNameView.text.toString()
             userData.isblind = isBlindView.isChecked
 
+            myActivity.showProgress(true)
+
             database.child("users").child(auth.uid!!).setValue(userData).addOnSuccessListener {
 
                 Log.i("firebase", "Saved user data")
                 myActivity.reload()
+                myActivity.showProgress(false)
 
             }.addOnFailureListener{
 
                 Log.e("firebase", "Error setting user data")
-                myActivity.reload()
+                myActivity.showProgress(false)
 
             }
 

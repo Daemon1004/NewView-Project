@@ -44,4 +44,5 @@
     <string name="DontDisturb">Не беспокоить</string>
     <string name="StatusChanged">Статус изменён</string>
     <string name="WaitingVolunteer">Ожидание волонтёров…</string>
+    <string name="ConnectedTo">"Вы подключены к "</string>
 </resources>

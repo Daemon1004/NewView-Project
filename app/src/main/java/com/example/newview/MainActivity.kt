@@ -3,6 +3,7 @@ package com.example.newview
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         if (auth.uid == null) { finish() }
+        showProgress(true)
         database.child("users").child(auth.uid!!).get().addOnSuccessListener {
 
             Log.i("firebase", "Got value ${it.value}")
@@ -95,10 +97,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
         findViewById<BottomNavigationView>(R.id.nav).selectedItemId = if (userData.isblind != null) { R.id.home } else { R.id.settings }
+
+    }
+    fun showProgress(show : Boolean) {
+        findViewById<ProgressBar>(R.id.progressBar).visibility = if (show) { ProgressBar.VISIBLE } else { ProgressBar.INVISIBLE }
     }
     private fun userDataLoaded() {
 
         navLoad()
+
+        showProgress(false)
 
         if (userData.isblind == null) { return }
 

@@ -1,9 +1,12 @@
 package com.example.newview
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
+import android.widget.TextView
+import com.androidnetworking.AndroidNetworking
+import com.androidnetworking.error.ANError
+import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -11,9 +14,12 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import org.json.JSONException
+import org.json.JSONObject
 
-class CallBActivity : AppCompatActivity() {
+class CallBActivity : CallActivity() {
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
 
@@ -41,7 +47,38 @@ class CallBActivity : AppCompatActivity() {
             return
         }
 
-        database.child("calls").child(auth.uid!!).child("needHelp").setValue(true)
+        AndroidNetworking.post("https://api.videosdk.live/v2/rooms")
+            .addHeaders("Authorization", token)
+            .build()
+            .getAsJSONObject(object : JSONObjectRequestListener {
+                override fun onResponse(response: JSONObject) {
+                    try {
+                        val meetingId = response.getString("roomId")
+
+                        Log.i("VideoSDK", "MeetingId: $meetingId")
+
+                        setMeetingId(meetingId)
+                        createHelp(meetingId)
+
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
+                    }
+                }
+
+                override fun onError(anError: ANError) {
+                    anError.printStackTrace()
+                }
+            })
+
+    }
+    private fun createHelp(meetingId : String) {
+
+        val me = auth.uid
+        val updates: MutableMap<String, Any> = hashMapOf(
+            "calls/$me/meetingId" to meetingId,
+            "calls/$me/needHelp" to true
+        )
+        database.updateChildren(updates)
 
         volunteerRef = database.child("calls").child(auth.uid!!).child("volunteer")
         volunteerListener = volunteerRef.addValueEventListener(object : ValueEventListener {
@@ -79,22 +116,42 @@ class CallBActivity : AppCompatActivity() {
                 }
             })
 
+        setMyName(userData.firstname + " " + userData.lastname)
+        setMeetingId(meetingId)
+
     }
 
+    @SuppressLint("SetTextI18n")
     private fun call(volunteer : String) {
-        val me = auth.uid
-        findViewById<CardView>(R.id.CardCallStatus).visibility = CardView.INVISIBLE
+        //findViewById<CardView>(R.id.CardCallStatus).visibility = CardView.INVISIBLE
+        database.child("users").child(volunteer).get().addOnSuccessListener {
 
+            Log.i("firebase", "Got value ${it.value}")
 
+            userData = if (it.value != null) {
+                it.getValue<UserData>() as UserData
+            } else {
+                UserData()
+            }
 
+            findViewById<TextView>(R.id.CallStatus).text =
+                resources.getString(R.string.ConnectedTo) + userData.firstname + " " + userData.lastname
+
+        }
+
+        initCall(true)
     }
 
     override fun onDestroy()
     {
 
-        callRef.removeEventListener(callListener)
-        volunteerRef.removeEventListener(volunteerListener)
-        database.child("calls").child(auth.uid!!).setValue(null)
+        try {
+            callRef.removeEventListener(callListener)
+            volunteerRef.removeEventListener(volunteerListener)
+            database.child("calls").child(auth.uid!!).setValue(null)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
         super.onDestroy()
     }
