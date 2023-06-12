@@ -17,6 +17,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
+
 class MainActivity : AppCompatActivity() {
     lateinit var database: DatabaseReference
     lateinit var auth: FirebaseAuth
@@ -26,6 +27,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        /*
+        val actionBar : ActionBar? = supportActionBar
+        if (actionBar != null) {
+            actionBar.setDisplayShowHomeEnabled(true)
+            actionBar.setIcon(R.mipmap.ic_launcher)
+        }
+        */
 
         database = Firebase.database.reference
         auth = Firebase.auth
