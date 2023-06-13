@@ -47,4 +47,5 @@
     <string name="StatusChanged">Status changed</string>
     <string name="WaitingVolunteer">Waiting for volunteers…</string>
     <string name="ConnectedTo">"You are connected to "</string>
+    <string name="Connecting">"Connecting…"</string>
 </resources>

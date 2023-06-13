@@ -1,9 +1,7 @@
 package com.example.newview
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
@@ -14,7 +12,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import org.json.JSONException
 import org.json.JSONObject
@@ -89,7 +86,7 @@ class CallBActivity : CallActivity() {
 
                     database.child("calls").removeEventListener(volunteerListener)
                     if (volunteer != "null") {
-                        call(volunteer)
+                        call()
                     }
 
                 }
@@ -118,27 +115,11 @@ class CallBActivity : CallActivity() {
 
         setMyName(userData.firstname + " " + userData.lastname)
         setMeetingId(meetingId)
+        setCallStatus(findViewById(R.id.CallStatus))
 
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun call(volunteer : String) {
-        //findViewById<CardView>(R.id.CardCallStatus).visibility = CardView.INVISIBLE
-        database.child("users").child(volunteer).get().addOnSuccessListener {
-
-            Log.i("firebase", "Got value ${it.value}")
-
-            userData = if (it.value != null) {
-                it.getValue<UserData>() as UserData
-            } else {
-                UserData()
-            }
-
-            findViewById<TextView>(R.id.CallStatus).text =
-                resources.getString(R.string.ConnectedTo) + userData.firstname + " " + userData.lastname
-
-        }
-
+    private fun call() {
         initCall(true)
     }
 

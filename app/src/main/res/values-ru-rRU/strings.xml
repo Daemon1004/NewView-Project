@@ -45,4 +45,5 @@
     <string name="StatusChanged">Статус изменён</string>
     <string name="WaitingVolunteer">Ожидание волонтёров…</string>
     <string name="ConnectedTo">"Вы подключены к "</string>
+    <string name="Connecting">Подключение…</string>
 </resources>

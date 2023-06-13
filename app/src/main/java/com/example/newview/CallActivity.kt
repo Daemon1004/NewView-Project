@@ -1,8 +1,11 @@
 package com.example.newview
 
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -17,6 +20,8 @@ open class CallActivity : AppCompatActivity() {
     private lateinit var meetingId : String
     private lateinit var myName : String
     private var videoView : VideoView? = null
+    private var progressBar : ProgressBar? = null
+    private var callStatus : TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +44,12 @@ open class CallActivity : AppCompatActivity() {
     fun setVideoView(newVideoView : VideoView) {
         videoView = newVideoView
     }
+    fun setProgressBar(newProgressBar : ProgressBar) {
+        progressBar = newProgressBar
+    }
+    fun setCallStatus(newCallStatus : TextView) {
+        callStatus = newCallStatus
+    }
     fun initCall(videoEnabled : Boolean) {
         VideoSDK.initialize(applicationContext)
 
@@ -50,6 +61,14 @@ open class CallActivity : AppCompatActivity() {
         )
 
         meeting!!.join()
+
+        if (progressBar != null) {
+            progressBar!!.visibility = ProgressBar.VISIBLE
+        }
+        if (callStatus != null) {
+            findViewById<TextView>(R.id.CallStatus).text =
+                resources.getString(R.string.Connecting)
+        }
 
         Log.i("VideoSDK", "InitVideo")
         meeting!!.localParticipant.addEventListener(object : ParticipantEventListener() {
@@ -70,31 +89,39 @@ open class CallActivity : AppCompatActivity() {
                 Log.i("VideoSDK", "MyStreamDisabled")
             }
         })
-        if (videoView != null) {
-            meeting!!.addEventListener(object : MeetingEventListener() {
-                override fun onParticipantJoined(participant: Participant) {
-                    Log.i("VideoSDK", "ParticipantJoined")
-                    participant.addEventListener(object : ParticipantEventListener() {
-                        override fun onStreamEnabled(stream: Stream) {
-                            if (stream.kind.equals("video", ignoreCase = true)) {
-                                val videoTrack = stream.track as VideoTrack
-                                videoView!!.addTrack(videoTrack)
-                            }
+        meeting!!.addEventListener(object : MeetingEventListener() {
+            override fun onParticipantJoined(participant: Participant) {
+                Log.i("VideoSDK", "ParticipantJoined")
+                participant.addEventListener(object : ParticipantEventListener() {
+                    @SuppressLint("SetTextI18n")
+                    override fun onStreamEnabled(stream: Stream) {
+                        if (stream.kind.equals("video", ignoreCase = true) && videoView != null) {
+                            val videoTrack = stream.track as VideoTrack
+                            videoView!!.addTrack(videoTrack)
                         }
-
-                        override fun onStreamDisabled(stream: Stream) {
-                            if (stream.kind.equals("video", ignoreCase = true)) {
-                                videoView!!.removeTrack()
-                            }
+                        if (progressBar != null) {
+                            progressBar!!.visibility = ProgressBar.INVISIBLE
                         }
-                    })
-                }
+                        if (callStatus != null) {
+                            findViewById<TextView>(R.id.CallStatus).text =
+                                resources.getString(R.string.ConnectedTo) + participant.displayName
+                        }
+                        Log.i("VideoSDK", "ParticipantStreamEnabled")
+                    }
 
-                override fun onParticipantLeft(participant: Participant) {
-                    Log.i("VideoSDK", "ParticipantLeft")
-                }
-            })
-        }
+                    override fun onStreamDisabled(stream: Stream) {
+                        if (stream.kind.equals("video", ignoreCase = true) && videoView != null) {
+                            videoView!!.removeTrack()
+                        }
+                        Log.i("VideoSDK", "ParticipantStreamEnabled")
+                    }
+                })
+            }
+
+            override fun onParticipantLeft(participant: Participant) {
+                Log.i("VideoSDK", "ParticipantLeft")
+            }
+        })
 
     }
 
