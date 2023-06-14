@@ -3,6 +3,7 @@ package com.example.newview
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.Window
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -24,6 +25,7 @@ class CallVActivity : CallActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_call_v)
 
         val arguments = intent.extras

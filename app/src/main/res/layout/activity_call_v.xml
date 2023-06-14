@@ -37,7 +37,6 @@
 
         <LinearLayout
             style="@style/groupLayout"
-            android:background="@android:color/transparent"
             android:orientation="vertical">
 
             <TextView

@@ -1,19 +1,15 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="Theme.NewView" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Primary brand color. -->
         <item name="colorPrimary">@color/colorPrimary_day</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark_day</item>
         <item name="colorAccent">@color/colorAccent_day</item>
         <item name="colorSurface">@color/colorAccent2_day</item>
-        <!-- Customize your theme here. -->
         <item name="colorSecondary">@color/background_day</item>
         <item name="buttonStyle">@style/systemButtonStyle</item>
         <item name="android:navigationBarColor">?attr/colorPrimaryDark</item>
     </style>
 
-    <!-- Widget.MaterialComponents.Button -->
     <style name="systemButtonStyle" parent="@android:style/Widget.Button">
         <item name="android:background">@drawable/roundedbutton</item>
         <item name="android:backgroundTint">?attr/colorSurface</item>
