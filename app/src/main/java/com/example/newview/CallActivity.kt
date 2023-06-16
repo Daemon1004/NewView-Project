@@ -75,13 +75,6 @@ open class CallActivity : AppCompatActivity() {
             override fun onStreamEnabled(stream: Stream) {
                 super.onStreamEnabled(stream)
                 Log.i("VideoSDK", "MyStreamEnabled")
-                /*
-                //Drawing video with my camera
-                if (stream.kind.equals("video", ignoreCase = true)) {
-                    val track = stream.track as VideoTrack
-                    videoView.addTrack(track)
-                }
-                */
                 if (videoEnabled) { meeting!!.changeWebcam() }
             }
             override fun onStreamDisabled(stream: Stream?) {
