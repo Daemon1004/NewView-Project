@@ -111,6 +111,78 @@ class MainActivity : AppCompatActivity() {
     fun showProgress(show : Boolean) {
         findViewById<ProgressBar>(R.id.progressBar).visibility = if (show) { ProgressBar.VISIBLE } else { ProgressBar.INVISIBLE }
     }
+
+    private lateinit var callRef : DatabaseReference
+    private lateinit var callListener : ValueEventListener
+    private var listenerExist : Boolean = false
+    private fun addCallListener() {
+        if (userData.isblind == null || userData.status == null) { return }
+        if (listenerExist) { removeCallListener() }
+        listenerExist = true
+        callRef = database.child("calls")
+        callListener = callRef.orderByChild("needHelp").equalTo(true).limitToFirst(1)
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (dataSnapshot.childrenCount > 0) {
+                        //Log.i("firebase", "Gets: $dataSnapshot")
+                        lateinit var data : DataSnapshot
+                        for (postSnapshot in dataSnapshot.children)
+                        {
+                            Log.i("firebase", "Call1 gets: $postSnapshot")
+                            data = postSnapshot
+                        }
+
+                        val blind = data.key
+
+                        if (blind != null && userData.status == true) {
+                            //database.child("calls").child(blind).child("volunteer").setValue(auth.uid)
+                            //database.child("calls").child(blind).child("needHelp").setValue(null)
+                            val updates: MutableMap<String, Any> = hashMapOf(
+                                "calls/$blind/volunteer" to (auth.uid as String),
+                                "calls/$blind/needHelp" to false
+                            )
+                            database.updateChildren(updates)
+                        }
+
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("firebase", "Error (calls)")
+                }
+            })
+    }
+    private fun removeCallListener()
+    {
+        if (!listenerExist) { return }
+        listenerExist = false
+        callRef.removeEventListener(callListener)
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        try {
+            if (userData.isblind == false) {
+                addCallListener()
+            }
+        } catch (e : UninitializedPropertyAccessException) {
+            e.printStackTrace()
+        }
+
+    }
+    override fun onStop() {
+        super.onStop()
+
+        try {
+            if (userData.isblind == false) {
+                removeCallListener()
+            }
+        } catch (e : UninitializedPropertyAccessException) {
+            e.printStackTrace()
+        }
+
+    }
+
     private fun userDataLoaded() {
 
         navLoad()
@@ -122,36 +194,7 @@ class MainActivity : AppCompatActivity() {
         if (userData.isblind == false)
         {
 
-            database.child("calls").orderByChild("needHelp").equalTo(true).limitToFirst(1)
-                .addValueEventListener(object : ValueEventListener {
-                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        if (dataSnapshot.childrenCount > 0) {
-                            //Log.i("firebase", "Gets: $dataSnapshot")
-                            lateinit var data : DataSnapshot
-                            for (postSnapshot in dataSnapshot.children)
-                            {
-                                Log.i("firebase", "Call1 gets: $postSnapshot")
-                                data = postSnapshot
-                            }
-
-                            val blind = data.key
-
-                            if (blind != null && userData.status == true) {
-                                //database.child("calls").child(blind).child("volunteer").setValue(auth.uid)
-                                //database.child("calls").child(blind).child("needHelp").setValue(null)
-                                val updates: MutableMap<String, Any> = hashMapOf(
-                                    "calls/$blind/volunteer" to (auth.uid as String),
-                                    "calls/$blind/needHelp" to false
-                                )
-                                database.updateChildren(updates)
-                            }
-
-                        }
-                    }
-                    override fun onCancelled(error: DatabaseError) {
-                        Log.e("firebase", "Error (calls)")
-                    }
-                })
+            addCallListener()
 
             database.child("calls").orderByChild("volunteer").equalTo(auth.uid).limitToFirst(1)
                 .addValueEventListener(object : ValueEventListener {
@@ -212,4 +255,5 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("blind", blind)
         startActivity(intent)
     }
+
 }
