@@ -46,4 +46,5 @@
     <string name="WaitingVolunteer">Ожидание волонтёров…</string>
     <string name="ConnectedTo">"Вы подключены к "</string>
     <string name="Connecting">Подключение…</string>
+    <string name="AcceptCall">Принять звонок</string>
 </resources>

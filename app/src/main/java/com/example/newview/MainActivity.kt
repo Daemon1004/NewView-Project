@@ -3,8 +3,10 @@ package com.example.newview
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -123,27 +125,31 @@ class MainActivity : AppCompatActivity() {
         callListener = callRef.orderByChild("needHelp").equalTo(true).limitToFirst(1)
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val card = findViewById<CardView>(R.id.AcceptCallCard)
                     if (dataSnapshot.childrenCount > 0) {
                         //Log.i("firebase", "Gets: $dataSnapshot")
-                        lateinit var data : DataSnapshot
-                        for (postSnapshot in dataSnapshot.children)
-                        {
+                        lateinit var data: DataSnapshot
+                        for (postSnapshot in dataSnapshot.children) {
                             Log.i("firebase", "Call1 gets: $postSnapshot")
                             data = postSnapshot
                         }
 
                         val blind = data.key
 
-                        if (blind != null && userData.status == true) {
-                            //database.child("calls").child(blind).child("volunteer").setValue(auth.uid)
-                            //database.child("calls").child(blind).child("needHelp").setValue(null)
-                            val updates: MutableMap<String, Any> = hashMapOf(
-                                "calls/$blind/volunteer" to (auth.uid as String),
-                                "calls/$blind/needHelp" to false
-                            )
-                            database.updateChildren(updates)
+                        if (blind != null && userData.status == true){
+                            card.visibility = CardView.VISIBLE
+                            findViewById<Button>(R.id.AcceptCallButton).setOnClickListener {
+                                card.visibility = CardView.GONE
+                                val updates: MutableMap<String, Any> = hashMapOf(
+                                    "calls/$blind/volunteer" to (auth.uid as String),
+                                    "calls/$blind/needHelp" to false
+                                )
+                                database.updateChildren(updates)
+                            }
                         }
 
+                    } else {
+                        card.visibility = CardView.GONE
                     }
                 }
                 override fun onCancelled(error: DatabaseError) {

@@ -126,6 +126,24 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/AcceptCallCard"
+            android:visibility="gone"
+            style="@style/groupCardViewStyle">
+
+            <LinearLayout
+                style="@style/groupLayout"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/AcceptCallButton"
+                    style="@style/groupSingleButtonStyle"
+                    android:text="@string/AcceptCall" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
             style="@style/groupCardViewStyle">
 
             <LinearLayout
