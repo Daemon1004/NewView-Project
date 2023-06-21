@@ -3,18 +3,13 @@ package com.example.newview
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
@@ -40,6 +35,8 @@ class MainActivity : AppCompatActivity() {
 
         database = Firebase.database.reference
         auth = Firebase.auth
+
+        stopService(Intent(this, MyService :: class.java))
 
         if (auth.uid == null) { finish() }
         showProgress(true)
@@ -113,57 +110,7 @@ class MainActivity : AppCompatActivity() {
     fun showProgress(show : Boolean) {
         findViewById<ProgressBar>(R.id.progressBar).visibility = if (show) { ProgressBar.VISIBLE } else { ProgressBar.INVISIBLE }
     }
-
-    private lateinit var callRef : DatabaseReference
-    private lateinit var callListener : ValueEventListener
-    private var listenerExist : Boolean = false
-    private fun addCallListener() {
-        if (userData.isblind == null || userData.status == null) { return }
-        if (listenerExist) { removeCallListener() }
-        listenerExist = true
-        callRef = database.child("calls")
-        callListener = callRef.orderByChild("needHelp").equalTo(true).limitToFirst(1)
-            .addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val card = findViewById<CardView>(R.id.AcceptCallCard)
-                    if (dataSnapshot.childrenCount > 0) {
-                        //Log.i("firebase", "Gets: $dataSnapshot")
-                        lateinit var data: DataSnapshot
-                        for (postSnapshot in dataSnapshot.children) {
-                            Log.i("firebase", "Call1 gets: $postSnapshot")
-                            data = postSnapshot
-                        }
-
-                        val blind = data.key
-
-                        if (blind != null && userData.status == true){
-                            card.visibility = CardView.VISIBLE
-                            findViewById<Button>(R.id.AcceptCallButton).setOnClickListener {
-                                card.visibility = CardView.GONE
-                                val updates: MutableMap<String, Any> = hashMapOf(
-                                    "calls/$blind/volunteer" to (auth.uid as String),
-                                    "calls/$blind/needHelp" to false
-                                )
-                                database.updateChildren(updates)
-                            }
-                        }
-
-                    } else {
-                        card.visibility = CardView.GONE
-                    }
-                }
-                override fun onCancelled(error: DatabaseError) {
-                    Log.e("firebase", "Error (calls)")
-                }
-            })
-    }
-    private fun removeCallListener()
-    {
-        if (!listenerExist) { return }
-        listenerExist = false
-        callRef.removeEventListener(callListener)
-    }
-
+    /*
     override fun onStart() {
         super.onStart()
 
@@ -188,6 +135,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+    */
 
     private fun userDataLoaded() {
 
@@ -200,32 +148,9 @@ class MainActivity : AppCompatActivity() {
         if (userData.isblind == false)
         {
 
-            addCallListener()
+            //addCallListener()
 
-            database.child("calls").orderByChild("volunteer").equalTo(auth.uid).limitToFirst(1)
-                .addValueEventListener(object : ValueEventListener {
-                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        if (dataSnapshot.childrenCount > 0) {
-                            //Log.i("firebase", "Gets: $dataSnapshot")
-                            lateinit var data : DataSnapshot
-                            for (postSnapshot in dataSnapshot.children)
-                            {
-                                Log.i("firebase", "Call2 gets: $postSnapshot")
-                                data = postSnapshot
-                            }
-
-                            val blind = data.key
-
-                            if (blind != null) {
-                                startCallVActivity(blind)
-                            }
-
-                        }
-                    }
-                    override fun onCancelled(error: DatabaseError) {
-                        Log.e("firebase", "Error (calls)")
-                    }
-                })
+            startService(Intent(this, MyService :: class.java))
 
         }
 
@@ -253,12 +178,6 @@ class MainActivity : AppCompatActivity() {
     fun startCallBActivity() {
         val intent = Intent(this, CallBActivity::class.java)
         intent.putExtra("userData", userData)
-        startActivity(intent)
-    }
-    fun startCallVActivity(blind : String) {
-        val intent = Intent(this, CallVActivity::class.java)
-        intent.putExtra("userData", userData)
-        intent.putExtra("blind", blind)
         startActivity(intent)
     }
 
