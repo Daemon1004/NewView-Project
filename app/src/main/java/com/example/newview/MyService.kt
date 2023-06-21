@@ -134,14 +134,13 @@ class MyService : Service() {
 
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.mipmap.ic_launcher)
-            .setContentTitle("Новый Взгляд")
-            .setContentText("Слепому нужна помощь")
+            .setContentTitle(getString(R.string.app_name))
+            .setContentText(getString(R.string.CallAcceptNotify))
             .setAutoCancel(true)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(contentIntent)
         val notificationManager = NotificationManagerCompat.from(this)
         notificationManager.notify(NOTIFY_ID, builder.build())
-
 
     }
 
