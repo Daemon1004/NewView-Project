@@ -16,7 +16,7 @@ import org.webrtc.VideoTrack
 
 open class CallActivity : AppCompatActivity() {
     private var meeting: Meeting? = null
-    lateinit var token : String
+
     private lateinit var meetingId : String
     private lateinit var myName : String
     private var videoView : VideoView? = null
@@ -28,8 +28,6 @@ open class CallActivity : AppCompatActivity() {
 
         checkSelfPerm(REQUESTED_PERMISSIONS[0])
         checkSelfPerm(REQUESTED_PERMISSIONS[1])
-
-        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJhMzU0ODg2MS0wNDBhLTQyN2MtYThmZC0yMmQzYjFmOTZhN2QiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY4NjU4NTU1OCwiZXhwIjoxODQ0MzczNTU4fQ.2tVIMbGFZ4lJMFKLeV-Irhy_6hcJu_hcmncraJHwfXc"
         meetingId = "?"
         myName = "Unknown"
 
@@ -144,5 +142,7 @@ open class CallActivity : AppCompatActivity() {
             android.Manifest.permission.RECORD_AUDIO,
             android.Manifest.permission.CAMERA
         )
+        const val token: String =
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJhMzU0ODg2MS0wNDBhLTQyN2MtYThmZC0yMmQzYjFmOTZhN2QiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY4NjU4NTU1OCwiZXhwIjoxODQ0MzczNTU4fQ.2tVIMbGFZ4lJMFKLeV-Irhy_6hcJu_hcmncraJHwfXc"
     }
 }
