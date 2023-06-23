@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         database = Firebase.database.reference
         auth = Firebase.auth
 
-        stopService(Intent(this, MyService :: class.java))
+        stopService(Intent(this, CallService :: class.java))
 
         if (auth.uid == null) { finish() }
         showProgress(true)
@@ -150,7 +150,7 @@ class MainActivity : AppCompatActivity() {
 
             //addCallListener()
 
-            startService(Intent(this, MyService :: class.java))
+            startService(Intent(this, CallService :: class.java))
 
         }
 

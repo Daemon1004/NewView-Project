@@ -19,7 +19,7 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
 
-class MyService : Service() {
+class CallService : Service() {
     lateinit var database: DatabaseReference
     lateinit var auth: FirebaseAuth
 
