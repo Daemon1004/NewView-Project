@@ -41,20 +41,22 @@ class CallService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
-        database.child("users").child(auth.uid!!).get().addOnSuccessListener {
+        if (auth.uid != null) {
+            database.child("users").child(auth.uid!!).get().addOnSuccessListener {
 
-            Log.i("firebase", "Got value ${it.value}")
+                Log.i("firebase", "Got value ${it.value}")
 
-            userData = if (it.value != null) {
-                it.getValue<UserData>() as UserData
-            } else {
-                UserData()
+                userData = if (it.value != null) {
+                    it.getValue<UserData>() as UserData
+                } else {
+                    UserData()
+                }
+
+                addCallListener()
+
+            }.addOnFailureListener {
+                Log.e("firebase", "Error getting data", it)
             }
-
-            addCallListener()
-
-        }.addOnFailureListener{
-            Log.e("firebase", "Error getting data", it)
         }
 
         Log.i("Service", "Started")
