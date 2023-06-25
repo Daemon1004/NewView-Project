@@ -25,14 +25,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        /*
-        val actionBar : ActionBar? = supportActionBar
-        if (actionBar != null) {
-            actionBar.setDisplayShowHomeEnabled(true)
-            actionBar.setIcon(R.mipmap.ic_launcher)
-        }
-        */
-
         database = Firebase.database.reference
         auth = Firebase.auth
 
@@ -110,33 +102,6 @@ class MainActivity : AppCompatActivity() {
     fun showProgress(show : Boolean) {
         findViewById<ProgressBar>(R.id.progressBar).visibility = if (show) { ProgressBar.VISIBLE } else { ProgressBar.INVISIBLE }
     }
-    /*
-    override fun onStart() {
-        super.onStart()
-
-        try {
-            if (userData.isblind == false) {
-                addCallListener()
-            }
-        } catch (e : UninitializedPropertyAccessException) {
-            e.printStackTrace()
-        }
-
-    }
-    override fun onStop() {
-        super.onStop()
-
-        try {
-            if (userData.isblind == false) {
-                removeCallListener()
-            }
-        } catch (e : UninitializedPropertyAccessException) {
-            e.printStackTrace()
-        }
-
-    }
-    */
-
     private fun userDataLoaded() {
 
         navLoad()
@@ -148,12 +113,17 @@ class MainActivity : AppCompatActivity() {
         if (userData.isblind == false)
         {
 
-            //addCallListener()
-
-            startService(Intent(this, CallService :: class.java))
+            if (userData.status == true) {
+                startService(Intent(this, CallService :: class.java))
+            }
 
         }
 
+    }
+    fun reloadService()
+    {
+        stopService(Intent(this, CallService :: class.java))
+        startService(Intent(this, CallService :: class.java))
     }
     fun loadFragment (Fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()

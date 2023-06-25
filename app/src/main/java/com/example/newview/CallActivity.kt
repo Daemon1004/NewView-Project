@@ -49,6 +49,7 @@ open class CallActivity : AppCompatActivity() {
         callStatus = newCallStatus
     }
     fun initCall(videoEnabled : Boolean) {
+        Log.i("VideoSDK", "InitCall")
         VideoSDK.initialize(applicationContext)
 
         VideoSDK.config(token)
@@ -57,6 +58,7 @@ open class CallActivity : AppCompatActivity() {
             this, meetingId, myName,
             true, videoEnabled, null, null, null
         )
+        Log.d("VideoSDK", "meetingId: $meetingId")
 
         meeting!!.join()
 
@@ -68,7 +70,6 @@ open class CallActivity : AppCompatActivity() {
                 resources.getString(R.string.Connecting)
         }
 
-        Log.i("VideoSDK", "InitVideo")
         meeting!!.localParticipant.addEventListener(object : ParticipantEventListener() {
             override fun onStreamEnabled(stream: Stream) {
                 super.onStreamEnabled(stream)

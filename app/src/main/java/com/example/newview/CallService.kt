@@ -20,13 +20,13 @@ import com.google.firebase.ktx.Firebase
 
 
 class CallService : Service() {
-    lateinit var database: DatabaseReference
-    lateinit var auth: FirebaseAuth
+    private lateinit var database: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
     private lateinit var userData: UserData
 
-    override fun onBind(intent: Intent): IBinder {
-        TODO("Return the communication channel to the service.")
+    override fun onBind(intent: Intent): IBinder? {
+        return null
     }
 
     override fun onCreate() {
@@ -93,12 +93,6 @@ class CallService : Service() {
 
                         if (blind != null) {
 
-                            val updates: MutableMap<String, Any> = hashMapOf(
-                                "calls/$blind/volunteer" to (auth.uid as String),
-                                "calls/$blind/needHelp" to false
-                            )
-                            database.updateChildren(updates)
-
                             notifyCall(blind)
 
                         }
@@ -122,7 +116,7 @@ class CallService : Service() {
         const val CHANNEL_ID = "Call channel"
     }
 
-    @SuppressLint("MissingPermission")
+    @SuppressLint("MissingPermission", "UnspecifiedImmutableFlag")
     private fun notifyCall(blind : String) {
 
         val intent = Intent(applicationContext, CallVActivity::class.java)
@@ -131,7 +125,7 @@ class CallService : Service() {
         val contentIntent = PendingIntent.getActivity(
             applicationContext,
             0, intent,
-            PendingIntent.FLAG_IMMUTABLE
+            PendingIntent.FLAG_UPDATE_CURRENT
         )
 
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)

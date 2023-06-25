@@ -68,14 +68,16 @@ class HomeFragmentV : Fragment() {
 
             view.findViewById<Button>(R.id.ChangeStatusButton).setOnClickListener {
                 userData.status = !userData.status!!
-                updateStatusName()
-                database.child("users").child(auth.uid!!).child("status").setValue(userData.status)
-                Log.i("firebase", "Write new status: " + userData.status)
-                Toast.makeText(
-                    myActivity.applicationContext,
-                    resources.getString(R.string.StatusChanged),
-                    Toast.LENGTH_SHORT
-                ).show()
+                database.child("users").child(auth.uid!!).child("status").setValue(userData.status).addOnSuccessListener {
+                    Log.i("firebase", "Write new status: " + userData.status)
+                    Toast.makeText(
+                        myActivity.applicationContext,
+                        resources.getString(R.string.StatusChanged),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    updateStatusName()
+                    myActivity.reloadService()
+                }
             }
         }
 

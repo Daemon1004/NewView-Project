@@ -19,6 +19,7 @@ class CallVActivity : CallActivity() {
 
     private lateinit var userData: UserData
     private lateinit var blind : String
+    private var canClose : Boolean = false
 
     private lateinit var callRef : DatabaseReference
     private lateinit var callListener : ValueEventListener
@@ -67,20 +68,35 @@ class CallVActivity : CallActivity() {
         setProgressBar(findViewById(R.id.progressBar))
         setCallStatus(findViewById(R.id.CallStatus))
 
-        database.child("calls").child(blind).child("meetingId").get().addOnSuccessListener {
-            Log.i("firebase", "GetMeetingId. Get: $it")
+        database.child("calls").child(blind).child("volunteer").get().addOnSuccessListener {
+            if (it.value == null) {
+                val updates: MutableMap<String, Any> = hashMapOf(
+                    "calls/$blind/volunteer" to (auth.uid as String),
+                    "calls/$blind/needHelp" to false
+                )
+                database.updateChildren(updates)
+                database.child("calls").child(blind).child("meetingId").get()
+                    .addOnSuccessListener { it2 ->
+                        Log.i("firebase", "GetMeetingId. Get: $it2")
 
-            setMeetingId(it.value.toString())
+                        setMeetingId(it2.value.toString())
 
-            findViewById<View>(R.id.VideoLayout).visibility = View.VISIBLE
-            initCall(false)
+                        findViewById<View>(R.id.VideoLayout).visibility = View.VISIBLE
+                        initCall(false)
+
+                        canClose = true
+                    }
+            } else {
+                finish()
+            }
         }
+
 
     }
     override fun onDestroy() {
 
         callRef.removeEventListener(callListener)
-        database.child("calls").child(blind).setValue(null)
+        if (canClose) { database.child("calls").child(blind).setValue(null) }
 
         super.onDestroy()
     }
